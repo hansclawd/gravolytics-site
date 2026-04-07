@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+
 const pillars = [
   {
     index: "01",
@@ -82,21 +86,163 @@ const rigorChecks = [
   "Archive failures aggressively. Most ghosts are wiring errors with better branding.",
 ] as const;
 
-function OrbitalBackdrop() {
+function useScrollProgress() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const max = Math.max(document.body.scrollHeight - window.innerHeight, 1);
+      setProgress(window.scrollY / max);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return progress;
+}
+
+function BlackHoleBackground() {
+  const progress = useScrollProgress();
+  const flarePhase = Math.max(0, Math.sin(progress * Math.PI * 8));
+  const flareStrength = Math.pow(flarePhase, 18);
+  const secondaryFlare = Math.pow(Math.max(0, Math.sin(progress * Math.PI * 13 + 0.8)), 24);
+  const translateY = `${8 + progress * 7}%`;
+  const rotation = `${progress * 160}deg`;
+  const ringRotation = `${-progress * 110}deg`;
+  const haloOpacity = 0.22 + flareStrength * 0.18 + secondaryFlare * 0.14;
+  const stars = useMemo(
+    () =>
+      Array.from({ length: 20 }, (_, i) => ({
+        id: i,
+        left: `${(i * 17.3) % 100}%`,
+        top: `${(i * 29.1 + 11) % 100}%`,
+        size: i % 3 === 0 ? 3 : i % 3 === 1 ? 2 : 1,
+        opacity: i % 4 === 0 ? 0.75 : 0.45,
+      })),
+    []
+  );
+
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(125,211,252,0.14),transparent_28%),radial-gradient(circle_at_80%_18%,rgba(168,85,247,0.14),transparent_26%),radial-gradient(circle_at_50%_80%,rgba(255,255,255,0.05),transparent_24%)]" />
-      <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:56px_56px]" />
-      <div className="absolute left-1/2 top-[18%] h-[54rem] w-[54rem] -translate-x-1/2 rounded-full border border-cyan-300/10" />
-      <div className="absolute left-1/2 top-[24%] h-[42rem] w-[42rem] -translate-x-1/2 rounded-full border border-fuchsia-300/10" />
-      <div className="absolute left-1/2 top-[31%] h-[30rem] w-[30rem] -translate-x-1/2 rounded-full border border-white/10" />
-      <div className="absolute left-1/2 top-[39%] h-[18rem] w-[18rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.92)_0%,rgba(2,6,23,0.95)_45%,rgba(125,211,252,0.12)_68%,transparent_74%)] shadow-[0_0_120px_rgba(125,211,252,0.12)]" />
-      <div className="absolute left-[12%] top-[20%] h-1.5 w-1.5 rounded-full bg-white/70 shadow-[0_0_18px_rgba(255,255,255,0.5)]" />
-      <div className="absolute left-[20%] top-[44%] h-1 w-1 rounded-full bg-cyan-200/70 shadow-[0_0_14px_rgba(125,211,252,0.6)]" />
-      <div className="absolute right-[16%] top-[28%] h-1.5 w-1.5 rounded-full bg-white/60 shadow-[0_0_18px_rgba(255,255,255,0.45)]" />
-      <div className="absolute right-[22%] top-[56%] h-1 w-1 rounded-full bg-fuchsia-200/80 shadow-[0_0_12px_rgba(217,70,239,0.65)]" />
-      <div className="absolute bottom-[15%] left-[24%] h-1.5 w-1.5 rounded-full bg-white/60" />
-      <div className="absolute bottom-[11%] right-[28%] h-1 w-1 rounded-full bg-cyan-100/80" />
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(125,211,252,0.1),transparent_30%),radial-gradient(circle_at_80%_16%,rgba(168,85,247,0.08),transparent_24%),radial-gradient(circle_at_50%_80%,rgba(255,255,255,0.04),transparent_26%)]" />
+      <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] [background-size:56px_56px]" />
+
+      {stars.map((star) => (
+        <span
+          key={star.id}
+          className="absolute rounded-full bg-white shadow-[0_0_18px_rgba(255,255,255,0.4)]"
+          style={{
+            left: star.left,
+            top: star.top,
+            width: `${star.size}px`,
+            height: `${star.size}px`,
+            opacity: star.opacity,
+          }}
+        />
+      ))}
+
+      <div
+        className="absolute left-1/2 top-0 h-[95rem] w-[95rem] -translate-x-1/2"
+        style={{ transform: `translate(-50%, ${translateY})` }}
+      >
+        <div className="absolute left-1/2 top-[10%] h-[64rem] w-[64rem] -translate-x-1/2 rounded-full border border-cyan-300/8" />
+        <div className="absolute left-1/2 top-[15%] h-[54rem] w-[54rem] -translate-x-1/2 rounded-full border border-fuchsia-300/8" />
+
+        <div
+          className="absolute left-1/2 top-[22%] h-[38rem] w-[38rem] -translate-x-1/2 rounded-full"
+          style={{ transform: `translateX(-50%) rotate(${rotation})` }}
+        >
+          <div
+            className="absolute inset-0 rounded-full opacity-90"
+            style={{
+              background:
+                "conic-gradient(from 140deg, rgba(125,211,252,0.05), rgba(251,191,36,0.22), rgba(245,158,11,0.42), rgba(217,70,239,0.18), rgba(125,211,252,0.05))",
+              filter: "blur(10px)",
+              transform: "scaleY(0.32) scaleX(1.08)",
+            }}
+          />
+          <div
+            className="absolute inset-[8%] rounded-full"
+            style={{
+              background:
+                "conic-gradient(from 220deg, rgba(255,255,255,0.04), rgba(253,224,71,0.2), rgba(251,146,60,0.48), rgba(125,211,252,0.08), rgba(255,255,255,0.04))",
+              filter: "blur(18px)",
+              transform: "scaleY(0.2) scaleX(1.14)",
+            }}
+          />
+        </div>
+
+        <div
+          className="absolute left-1/2 top-[25.5%] h-[30rem] w-[30rem] -translate-x-1/2 rounded-full"
+          style={{ transform: `translateX(-50%) rotate(${ringRotation})` }}
+        >
+          <div
+            className="absolute inset-0 rounded-full border border-cyan-100/6"
+            style={{ transform: "scaleY(0.38) rotate(16deg)", filter: "blur(1px)" }}
+          />
+          <div
+            className="absolute inset-[12%] rounded-full border border-white/6"
+            style={{ transform: "scaleY(0.34) rotate(-10deg)", filter: "blur(1px)" }}
+          />
+        </div>
+
+        <div
+          className="absolute left-1/2 top-[26.5%] h-[24rem] w-[24rem] -translate-x-1/2 rounded-full"
+          style={{
+            background: `radial-gradient(circle at center, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.98) 38%, rgba(125,211,252,${haloOpacity * 0.22}) 58%, rgba(125,211,252,${haloOpacity * 0.1}) 66%, transparent 74%)`,
+            boxShadow: `0 0 120px rgba(125,211,252,${haloOpacity * 0.45})`,
+          }}
+        >
+          <div
+            className="absolute inset-[-12%] rounded-full"
+            style={{
+              background: `radial-gradient(circle at center, transparent 34%, rgba(255,255,255,${0.02 + flareStrength * 0.12}) 50%, transparent 66%)`,
+              filter: "blur(14px)",
+            }}
+          />
+        </div>
+
+        <div
+          className="absolute left-1/2 top-[28.5%] h-[18rem] w-[34rem] -translate-x-1/2"
+          style={{ opacity: 0.16 + flareStrength * 0.5 }}
+        >
+          <div
+            className="absolute left-1/2 top-1/2 h-[3px] w-[120%] -translate-x-1/2 -translate-y-1/2"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, rgba(125,211,252,0.05), rgba(255,255,255,0.42), rgba(125,211,252,0.08), transparent)",
+              filter: "blur(3px)",
+            }}
+          />
+        </div>
+
+        <div
+          className="absolute left-1/2 top-[18%] h-[26rem] w-[6rem] -translate-x-1/2"
+          style={{ opacity: flareStrength * 0.85 + secondaryFlare * 0.45 }}
+        >
+          <div
+            className="absolute left-1/2 top-0 h-full w-full -translate-x-1/2"
+            style={{
+              background:
+                "linear-gradient(180deg, transparent, rgba(125,211,252,0.18), rgba(255,255,255,0.8), rgba(125,211,252,0.18), transparent)",
+              clipPath: "polygon(50% 0%, 70% 14%, 56% 100%, 44% 100%, 30% 14%)",
+              filter: "blur(8px)",
+            }}
+          />
+        </div>
+
+        <div
+          className="absolute left-1/2 top-[34%] h-[18rem] w-[18rem] -translate-x-1/2 rounded-full"
+          style={{
+            opacity: 0.22 + flareStrength * 0.32,
+            background:
+              "radial-gradient(circle at center, rgba(255,255,255,0.08) 0%, rgba(125,211,252,0.12) 20%, rgba(125,211,252,0.04) 38%, transparent 64%)",
+            filter: "blur(22px)",
+          }}
+        />
+      </div>
     </div>
   );
 }
@@ -204,10 +350,10 @@ export default function HomePage() {
         }
       `}</style>
 
-      <OrbitalBackdrop />
+      <BlackHoleBackground />
       <SaucerEasterEgg />
 
-      <section className="relative min-h-[110svh] snap-start px-6 pb-20 pt-10 lg:px-10">
+      <section className="relative z-10 min-h-[110svh] snap-start px-6 pb-20 pt-10 lg:px-10">
         <div className="flex min-h-[96svh] items-center">
           <div className="grid w-full gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
             <div className="max-w-4xl">
@@ -250,13 +396,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="relative">
+      <div className="relative z-10">
         {sections.slice(1).map((section, index) => (
           <FocusSection key={section.id} section={section} index={index + 1} />
         ))}
       </div>
 
-      <section className="relative border-t border-white/8 px-6 py-20 lg:px-10">
+      <section className="relative z-10 border-t border-white/8 px-6 py-20 lg:px-10">
         <div className="mx-auto max-w-6xl rounded-[2rem] border border-cyan-200/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] px-6 py-10 shadow-[0_24px_80px_rgba(0,0,0,0.28)] md:px-10 md:py-14">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
             <div>
