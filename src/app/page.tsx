@@ -11,9 +11,9 @@ const pillars = [
   },
   {
     index: "02",
-    title: "Orbital Logic",
+    title: "Field Interpretation",
     body:
-      "The project treats orbital mechanics as interface language: trajectories, capture windows, basin transitions, escape energy, and the ugly elegance of motion constrained by curvature.",
+      "The project is less about spectacle and more about learning to read structure: asymmetry, confinement, flow, charge transport, and the visual signatures of systems that refuse to stay simple.",
   },
   {
     index: "03",
@@ -29,45 +29,45 @@ const sections = [
     eyebrow: "AE-SPOOKY // SPECIAL PROGRAMS",
     title: "Gravolytics",
     lead:
-      "A cinematic research surface for spacetime intuition, gravity-well geometry, orbital reasoning, and disciplined anomaly triage.",
+      "A visual environment for spacetime intuition, field asymmetry, gravity-well geometry, and disciplined electrogravitics research.",
     detail:
-      "Part software platform, part research doctrine, part low-light lab mood. Built for the part of engineering that sits just beyond polite conversation.",
+      "Part software instrument, part research surface, part low-light lab artifact. Built for the side of engineering that lives somewhere between mathematics, hardware, and unanswered questions.",
   },
   {
     id: "well",
     eyebrow: "FIELD STRUCTURES",
-    title: "Model the well, not just the story.",
+    title: "See the shape before you name the effect.",
     lead:
-      "The interface is built around the visual language of curvature: sinks, basins, shear, horizon lines, and trajectories that stop looking metaphorical once the math gets sharp enough.",
+      "Gravolytics is built around the visual language of curvature: sinks, basins, shear, collapse, asymmetry, and boundary conditions that begin as geometry and end as engineering decisions.",
     detail:
-      "This is where spacetime themes become software. Gravolytics turns abstract structure into something navigable — less lecture, more instrument panel for warped geometry.",
+      "The point is not to romanticize the unknown. The point is to render difficult structure clearly enough that a real hypothesis can survive contact with it.",
   },
   {
-    id: "orbit",
-    eyebrow: "ORBITAL MECHANICS",
-    title: "Motion under constraint becomes design.",
+    id: "interpretation",
+    eyebrow: "INTERPRETATION LAYER",
+    title: "A place to examine strange behavior without flattering it.",
     lead:
-      "Orbital mechanics is not decoration here. It is the grammar: capture, drift, transfer, collapse, escape. The page should feel like a controlled descent through a system with too much hidden structure.",
+      "Not every unusual result is a breakthrough. Some are charge transport. Some are thermal ghosts. Some are geometry finally making itself visible. Gravolytics exists to sort signal from atmosphere.",
     detail:
-      "As you scroll, each section comes into focus, dominates the field, then yields to the next — like passing through successive regimes in a gravity problem.",
+      "This layer of the project is about reading systems correctly: where gradients sharpen, where materials respond, where fields leak into motion, and where interpretation tends to get ahead of the evidence.",
   },
   {
     id: "materials",
     eyebrow: "WATCHLIST",
-    title: "Interesting materials. Limited superstition.",
+    title: "Materials with unusual manners.",
     lead:
-      "The materials lane stays grounded: barium titanate, bismuth, and other candidates are tracked as possible experimental levers, not automatic evidence of new physics.",
+      "Some materials seem to invite better questions than others. High-k ceramics, dense diamagnetic metals, strange dielectrics, temperamental semiconductors — the watchlist is less a shopping list than a map of promising trouble.",
     detail:
-      "Every material gets interrogated for dielectric, magnetic, thermal, geometric, and measurement-artifact behavior before anyone is allowed to whisper the word anomalous.",
+      "Barium titanate, bismuth, and related candidates sit here because they distort expectations in useful ways: permittivity, polarization, density, magnetic response, leakage, structure. Enough character to deserve a closer look.",
   },
   {
     id: "rigor",
-    eyebrow: "RIGOR",
-    title: "Spooky does not mean sloppy.",
+    eyebrow: "RESEARCH DISCIPLINE",
+    title: "Electrogravitics has survived this long because curiosity is cheap. Rigor is not.",
     lead:
-      "The page closes on the actual doctrine: momentum accounting, control tests, hostile replication, instrument skepticism, and the refusal to confuse visual drama with physical significance.",
+      "The field is crowded with claims that glow nicely in the dark and collapse in daylight. AE-Spooky takes the opposite route: every effect gets treated as ordinary until it survives the boring explanations.",
     detail:
-      "If a claim cannot survive controls, vacuum logic, thermal checks, and wiring suspicion, it does not graduate. It goes back into the bin with the rest of the ghosts.",
+      "Momentum accounting, pressure dependence, thermal controls, shielding, geometry checks, vacuum behavior, and instrumentation suspicion are not obstacles to discovery. They are the admission price.",
   },
 ] as const;
 
@@ -80,10 +80,28 @@ const watchlist = [
 ] as const;
 
 const rigorChecks = [
-  "Momentum ledger first — where did the counter-momentum go?",
-  "Suppress ion wind, thermal lift, charging artifacts, and chamber coupling before discussing anomalies.",
+  "Where did the counter-momentum go?",
+  "Kill ion wind, thermal lift, charging artifacts, and chamber coupling first.",
   "Treat instrumentation drift as guilty until proven innocent.",
-  "Archive failures aggressively. Most ghosts are wiring errors with better branding.",
+  "Archive false positives as carefully as successes.",
+] as const;
+
+const brownHistory = [
+  {
+    title: "Early experiments",
+    body:
+      "Thomas Townsend Brown began with high-voltage asymmetrical tube experiments and became convinced that strong electric fields were doing something deeper than ordinary electrostatics.",
+  },
+  {
+    title: "Electrogravitics language",
+    body:
+      "He spent decades describing propulsion, gravity interaction, and what became known as the Biefeld–Brown effect — a mix of real observed force and disputed interpretation.",
+  },
+  {
+    title: "Why it matters now",
+    body:
+      "Gravolytics inherits that tension directly: the need to visualize field behavior clearly enough to separate atmospheric EHD effects, instrumentation artifacts, and any genuinely interesting residuals.",
+  },
 ] as const;
 
 function useScrollProgress() {
@@ -276,7 +294,7 @@ function FocusSection({
         <div className="grid w-full gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="max-w-3xl">
             <p className="mb-5 text-xs font-medium uppercase tracking-[0.35em] text-cyan-200/70">{section.eyebrow}</p>
-            <h2 className="max-w-4xl text-5xl font-semibold tracking-[-0.06em] text-white md:text-7xl lg:text-[5.6rem] lg:leading-[0.92]">
+            <h2 className="max-w-4xl text-4xl font-semibold tracking-[-0.05em] text-white md:text-6xl lg:text-[4.8rem] lg:leading-[0.96]">
               {section.title}
             </h2>
             <p className="mt-8 max-w-2xl text-lg leading-8 text-white/68 md:text-xl md:leading-9">{section.lead}</p>
@@ -299,14 +317,21 @@ function FocusSection({
             ) : null}
 
             {index === 2 ? (
-              <div className="relative z-10 h-[22rem] w-full max-w-[26rem]">
-                <div className="absolute left-[7%] top-[50%] h-px w-[86%] bg-gradient-to-r from-transparent via-cyan-200/30 to-transparent" />
-                <div className="absolute left-[18%] top-[26%] h-[14rem] w-[14rem] rounded-full border border-white/10" />
-                <div className="absolute left-[18%] top-[26%] h-[14rem] w-[14rem] rounded-full border border-fuchsia-300/12 [transform:rotateX(72deg)]" />
-                <div className="absolute left-[18%] top-[26%] h-[14rem] w-[14rem] rounded-full border border-cyan-300/15 [transform:rotate(28deg)]" />
-                <div className="absolute left-[43%] top-[43%] h-3.5 w-3.5 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(125,211,252,0.8)]" />
-                <div className="absolute left-[66%] top-[34%] h-2.5 w-2.5 rounded-full bg-fuchsia-200 shadow-[0_0_16px_rgba(217,70,239,0.7)]" />
-                <div className="absolute left-[72%] top-[60%] h-2 w-2 rounded-full bg-white/90 shadow-[0_0_12px_rgba(255,255,255,0.6)]" />
+              <div className="relative z-10 flex w-full max-w-[27rem] flex-col gap-4 px-8">
+                {[
+                  "Asymmetry",
+                  "Charge transport",
+                  "Boundary effects",
+                  "Interpretation drift",
+                ].map((item, itemIndex) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-white/8 bg-black/26 px-4 py-4 text-sm uppercase tracking-[0.2em] text-cyan-100/70"
+                    style={{ transform: `translateX(${itemIndex % 2 === 0 ? 0 : 18}px)` }}
+                  >
+                    {item}
+                  </div>
+                ))}
               </div>
             ) : null}
 
@@ -369,7 +394,7 @@ export default function HomePage() {
                   Spacetime visualization
                 </div>
                 <div className="rounded-full border border-fuchsia-200/14 bg-fuchsia-300/[0.08] px-4 py-2 text-xs uppercase tracking-[0.2em] text-fuchsia-100/80">
-                  Orbital reasoning
+                  Electrogravitics research
                 </div>
                 <div className="rounded-full border border-white/12 bg-white/[0.04] px-4 py-2 text-xs uppercase tracking-[0.2em] text-white/78">
                   Anomaly discipline
@@ -404,23 +429,39 @@ export default function HomePage() {
 
       <section className="relative z-10 border-t border-white/8 px-6 py-20 lg:px-10">
         <div className="mx-auto max-w-6xl rounded-[2rem] border border-cyan-200/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] px-6 py-10 shadow-[0_24px_80px_rgba(0,0,0,0.28)] md:px-10 md:py-14">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.35em] text-cyan-200/70">PLATFORM STRUCTURE</p>
+              <p className="text-xs font-medium uppercase tracking-[0.35em] text-cyan-200/70">HISTORICAL THREAD</p>
               <h2 className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-white md:text-6xl">
-                One page. Long descent. Controlled mystery.
+                Thomas Townsend Brown and the long shadow of electrogravitics.
               </h2>
               <p className="mt-6 max-w-2xl text-base leading-8 text-white/58 md:text-lg">
-                The AE-Spooky site should feel like an instrument panel dropped into a gravity problem: sections arrive, dominate, dissolve, and hand off to the next regime. Clean. Premium. Spooky in the right way.
+                Brown spent decades exploring whether strong electric fields, asymmetric geometries, and dielectric structures were pointing toward a deeper interaction between electricity and gravitation. Much of what he saw is now usually explained through electrohydrodynamics and ion-driven effects — but the questions he raised never entirely left the room.
+              </p>
+              <p className="mt-5 max-w-2xl text-sm leading-7 text-white/46 md:text-base">
+                Gravolytics sits in that aftermath. Not to canonize Brown, and not to recycle mythology, but to give the field a better visual and analytical surface for separating historical intuition, real atmospheric force phenomena, and whatever survives serious modern scrutiny.
               </p>
             </div>
 
             <div className="grid gap-4">
-              {pillars.map((pillar) => (
-                <div key={pillar.index} className="rounded-[1.4rem] border border-white/8 bg-black/24 p-5">
-                  <div className="mb-3 text-xs uppercase tracking-[0.28em] text-cyan-200/62">{pillar.index}</div>
-                  <h3 className="text-xl font-semibold text-white">{pillar.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-white/56">{pillar.body}</p>
+              <div className="overflow-hidden rounded-[1.4rem] border border-white/8 bg-black/24">
+                <div className="aspect-[4/3] w-full bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.08),transparent_28%),linear-gradient(180deg,rgba(20,26,36,0.9),rgba(8,10,14,0.98))] p-6">
+                  <div className="flex h-full flex-col justify-between rounded-[1.1rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.015))] p-5">
+                    <div>
+                      <p className="text-[11px] uppercase tracking-[0.28em] text-cyan-200/60">Archival placeholder</p>
+                      <p className="mt-3 max-w-[16rem] text-sm leading-6 text-white/56">
+                        Reserve this frame for a Brown experiment photograph or period lab image once we choose the exact archival source and rights-safe asset.
+                      </p>
+                    </div>
+                    <div className="text-xs uppercase tracking-[0.24em] text-white/34">High voltage, asymmetry, interpretation</div>
+                  </div>
+                </div>
+              </div>
+
+              {brownHistory.map((item) => (
+                <div key={item.title} className="rounded-[1.4rem] border border-white/8 bg-black/24 p-5">
+                  <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-white/56">{item.body}</p>
                 </div>
               ))}
             </div>
