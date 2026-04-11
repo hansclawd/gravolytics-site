@@ -2,105 +2,102 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-const pillars = [
-  {
-    index: "01",
-    title: "Spacetime Surfaces",
-    body:
-      "Gravolytics is the visual lab for warped geometry, potential wells, field gradients, and the kinds of structures that look theoretical until they start shaping engineering decisions.",
-  },
-  {
-    index: "02",
-    title: "Field Interpretation",
-    body:
-      "The project is less about spectacle and more about learning to read structure: asymmetry, confinement, flow, charge transport, and the visual signatures of systems that refuse to stay simple.",
-  },
-  {
-    index: "03",
-    title: "Anomaly Discipline",
-    body:
-      "AE-Spooky exists to investigate weirdness without becoming stupid. Signal before myth. Instrumentation before narrative. Hostile debunking before celebration.",
-  },
+const railStats = [
+  { label: "Discipline", value: "Electrogravitics / field analysis" },
+  { label: "Mode", value: "Visualization, interpretation, triage" },
+  { label: "Method", value: "Geometry first. Myth last." },
 ] as const;
 
 const sections = [
   {
     id: "hero",
-    eyebrow: "AE-SPOOKY // SPECIAL PROGRAMS",
-    title: "Gravolytics",
+    eyebrow: "AE-SPOOKY // GRAVOLYTICS",
+    title: "A visual lab for difficult field behavior.",
     lead:
-      "A visual environment for spacetime intuition, field asymmetry, gravity-well geometry, and disciplined electrogravitics research.",
+      "Gravolytics is a research surface for warped geometry, asymmetrical fields, charge-driven motion, and the electrogravitics questions that refuse to die politely.",
     detail:
-      "Part software instrument, part research surface, part low-light lab artifact. Built for the side of engineering that lives somewhere between mathematics, hardware, and unanswered questions.",
+      "Built for the part of engineering that sits between mathematical structure, instrumentation, materials behavior, and historical claims that still deserve better tools than folklore.",
   },
   {
-    id: "well",
-    eyebrow: "FIELD STRUCTURES",
-    title: "See the shape before you name the effect.",
+    id: "field-surfaces",
+    eyebrow: "FIELD SURFACES",
+    title: "Geometry before interpretation.",
     lead:
-      "Gravolytics is built around the visual language of curvature: sinks, basins, shear, collapse, asymmetry, and boundary conditions that begin as geometry and end as engineering decisions.",
+      "Potential wells, collapse regions, asymmetry, leakage, shear, confinement — Gravolytics starts by making the shape of a problem visible before anyone decides what story it belongs to.",
     detail:
-      "The point is not to romanticize the unknown. The point is to render difficult structure clearly enough that a real hypothesis can survive contact with it.",
+      "That matters because electrogravitics has always suffered from premature narration. A cleaner visual surface is not decoration. It is a way of reducing interpretive sloppiness.",
   },
   {
     id: "interpretation",
-    eyebrow: "INTERPRETATION LAYER",
-    title: "A place to examine strange behavior without flattering it.",
+    eyebrow: "INTERPRETATION",
+    title: "Not every unusual result deserves a new law of nature.",
     lead:
-      "Not every unusual result is a breakthrough. Some are charge transport. Some are thermal ghosts. Some are geometry finally making itself visible. Gravolytics exists to sort signal from atmosphere.",
+      "Some strange behavior turns out to be ion wind. Some of it is heating. Some is geometry finally becoming obvious. Some is instrumentation drifting just enough to embarrass everyone involved.",
     detail:
-      "This layer of the project is about reading systems correctly: where gradients sharpen, where materials respond, where fields leak into motion, and where interpretation tends to get ahead of the evidence.",
+      "The point of the platform is to make these possibilities legible early — before language outruns mechanism and the lab fills with expensive superstition.",
   },
   {
     id: "materials",
-    eyebrow: "WATCHLIST",
-    title: "Materials with unusual manners.",
+    eyebrow: "MATERIALS",
+    title: "A catalog of promising trouble.",
     lead:
-      "Some materials seem to invite better questions than others. High-k ceramics, dense diamagnetic metals, strange dielectrics, temperamental semiconductors — the watchlist is less a shopping list than a map of promising trouble.",
+      "Some materials carry a certain kind of tension: high-k ceramics, dense diamagnetic metals, volatile dielectrics, and semiconductors that behave beautifully right up until they don’t.",
     detail:
-      "Barium titanate, bismuth, and related candidates sit here because they distort expectations in useful ways: permittivity, polarization, density, magnetic response, leakage, structure. Enough character to deserve a closer look.",
+      "Barium titanate, bismuth, and related candidates matter here not because they prove anything, but because they have enough structure, response, and inconvenience to make an experiment interesting.",
   },
   {
-    id: "rigor",
-    eyebrow: "RESEARCH DISCIPLINE",
-    title: "Electrogravitics has survived this long because curiosity is cheap. Rigor is not.",
+    id: "discipline",
+    eyebrow: "DISCIPLINE",
+    title: "The field only gets more interesting after the boring explanations survive contact.",
     lead:
-      "The field is crowded with claims that glow nicely in the dark and collapse in daylight. AE-Spooky takes the opposite route: every effect gets treated as ordinary until it survives the boring explanations.",
+      "Electrogravitics has accumulated decades of heat and very little mercy. If an effect cannot survive momentum accounting, pressure dependence, thermal controls, shielding, geometry checks, and suspicion toward the instrument chain, it does not get promoted.",
     detail:
-      "Momentum accounting, pressure dependence, thermal controls, shielding, geometry checks, vacuum behavior, and instrumentation suspicion are not obstacles to discovery. They are the admission price.",
+      "That is not a killjoy position. It is the only reason the subject remains worth touching.",
   },
 ] as const;
 
-const watchlist = [
-  "Barium titanate ceramic dielectrics",
-  "Bismuth",
-  "High-k ceramics",
-  "Wide-bandgap semiconductors",
-  "Controlled gas media",
+const materials = [
+  {
+    name: "Barium titanate",
+    note: "High-k ceramic with enough polarization behavior to make the lab more interesting than comfortable.",
+  },
+  {
+    name: "Bismuth",
+    note: "Dense, diamagnetic, and persistently present in the stranger corners of the conversation.",
+  },
+  {
+    name: "High-k dielectrics",
+    note: "Where permittivity, leakage, heating, and expectation start pulling against each other.",
+  },
+  {
+    name: "Controlled gas media",
+    note: "Useful when the question is not whether a force exists, but what medium is actually carrying it.",
+  },
 ] as const;
 
-const rigorChecks = [
-  "Where did the counter-momentum go?",
-  "Kill ion wind, thermal lift, charging artifacts, and chamber coupling first.",
-  "Treat instrumentation drift as guilty until proven innocent.",
-  "Archive false positives as carefully as successes.",
+const disciplineChecks = [
+  "Momentum ledger: where did the counter-momentum go?",
+  "Pressure sweep: what survives as the gas disappears?",
+  "Thermal audit: what shifts when heat is no longer ignored?",
+  "Geometry check: what changes when the structure does?",
+  "Instrument suspicion: what is the sensor chain lying about today?",
 ] as const;
 
 const brownHistory = [
   {
-    title: "Early experiments",
+    title: "The original wager",
     body:
-      "Thomas Townsend Brown began with high-voltage asymmetrical tube experiments and became convinced that strong electric fields were doing something deeper than ordinary electrostatics.",
+      "Brown’s early high-voltage asymmetrical experiments led him to suspect that electric fields might be doing more than ordinary electrostatics should allow.",
   },
   {
-    title: "Electrogravitics language",
+    title: "The split in interpretation",
     body:
-      "He spent decades describing propulsion, gravity interaction, and what became known as the Biefeld–Brown effect — a mix of real observed force and disputed interpretation.",
+      "What he regarded as gravity interaction is now often interpreted through electrohydrodynamics, ion wind, and other conventional force pathways. The force was real enough to see. The ontology remains the fight.",
   },
   {
-    title: "Why it matters now",
+    title: "Why Gravolytics exists",
     body:
-      "Gravolytics inherits that tension directly: the need to visualize field behavior clearly enough to separate atmospheric EHD effects, instrumentation artifacts, and any genuinely interesting residuals.",
+      "The modern problem is not just whether a claim is true. It is whether field behavior can be visualized and interrogated clearly enough that mechanism separates itself from mythology.",
   },
 ] as const;
 
@@ -123,34 +120,35 @@ function useScrollProgress() {
 
 function BlackHoleBackground() {
   const progress = useScrollProgress();
-  const flarePhase = Math.max(0, Math.sin(progress * Math.PI * 8));
+  const flarePhase = Math.max(0, Math.sin(progress * Math.PI * 7.5));
   const flareStrength = Math.pow(flarePhase, 18);
-  const secondaryFlare = Math.pow(Math.max(0, Math.sin(progress * Math.PI * 13 + 0.8)), 24);
-  const translateY = `${8 + progress * 7}%`;
-  const rotation = `${progress * 160}deg`;
-  const ringRotation = `${-progress * 110}deg`;
-  const haloOpacity = 0.22 + flareStrength * 0.18 + secondaryFlare * 0.14;
+  const secondaryFlare = Math.pow(Math.max(0, Math.sin(progress * Math.PI * 11.5 + 0.7)), 26);
+  const translateY = `${7 + progress * 6.5}%`;
+  const rotation = `${progress * 150}deg`;
+  const ringRotation = `${-progress * 105}deg`;
+  const haloOpacity = 0.2 + flareStrength * 0.18 + secondaryFlare * 0.14;
+
   const stars = useMemo(
     () =>
-      Array.from({ length: 20 }, (_, i) => ({
+      Array.from({ length: 24 }, (_, i) => ({
         id: i,
-        left: `${(i * 17.3) % 100}%`,
-        top: `${(i * 29.1 + 11) % 100}%`,
-        size: i % 3 === 0 ? 3 : i % 3 === 1 ? 2 : 1,
-        opacity: i % 4 === 0 ? 0.75 : 0.45,
+        left: `${(i * 13.7 + 9) % 100}%`,
+        top: `${(i * 27.4 + 7) % 100}%`,
+        size: i % 4 === 0 ? 3 : i % 4 === 1 ? 2 : 1,
+        opacity: i % 5 === 0 ? 0.82 : 0.42,
       })),
     []
   );
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(125,211,252,0.1),transparent_30%),radial-gradient(circle_at_80%_16%,rgba(168,85,247,0.08),transparent_24%),radial-gradient(circle_at_50%_80%,rgba(255,255,255,0.04),transparent_26%)]" />
-      <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] [background-size:56px_56px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_16%,rgba(130,148,161,0.14),transparent_24%),radial-gradient(circle_at_82%_18%,rgba(255,135,0,0.06),transparent_20%),radial-gradient(circle_at_52%_80%,rgba(125,211,252,0.05),transparent_24%),linear-gradient(180deg,#040608_0%,#05070b_42%,#020407_100%)]" />
+      <div className="absolute inset-0 opacity-[0.13] [background-image:linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:62px_62px]" />
 
       {stars.map((star) => (
         <span
           key={star.id}
-          className="absolute rounded-full bg-white shadow-[0_0_18px_rgba(255,255,255,0.4)]"
+          className="absolute rounded-full bg-white shadow-[0_0_18px_rgba(255,255,255,0.36)]"
           style={{
             left: star.left,
             top: star.top,
@@ -162,104 +160,95 @@ function BlackHoleBackground() {
       ))}
 
       <div
-        className="absolute left-1/2 top-0 h-[95rem] w-[95rem] -translate-x-1/2"
+        className="absolute left-1/2 top-0 h-[98rem] w-[98rem] -translate-x-1/2"
         style={{ transform: `translate(-50%, ${translateY})` }}
       >
-        <div className="absolute left-1/2 top-[10%] h-[64rem] w-[64rem] -translate-x-1/2 rounded-full border border-cyan-300/8" />
-        <div className="absolute left-1/2 top-[15%] h-[54rem] w-[54rem] -translate-x-1/2 rounded-full border border-fuchsia-300/8" />
+        <div className="absolute left-1/2 top-[10%] h-[66rem] w-[66rem] -translate-x-1/2 rounded-full border border-[#8294A1]/10" />
+        <div className="absolute left-1/2 top-[15%] h-[54rem] w-[54rem] -translate-x-1/2 rounded-full border border-cyan-300/8" />
 
         <div
-          className="absolute left-1/2 top-[22%] h-[38rem] w-[38rem] -translate-x-1/2 rounded-full"
+          className="absolute left-1/2 top-[22%] h-[40rem] w-[40rem] -translate-x-1/2 rounded-full"
           style={{ transform: `translateX(-50%) rotate(${rotation})` }}
         >
           <div
-            className="absolute inset-0 rounded-full opacity-90"
+            className="absolute inset-0 rounded-full"
             style={{
               background:
-                "conic-gradient(from 140deg, rgba(125,211,252,0.05), rgba(251,191,36,0.22), rgba(245,158,11,0.42), rgba(217,70,239,0.18), rgba(125,211,252,0.05))",
-              filter: "blur(10px)",
-              transform: "scaleY(0.32) scaleX(1.08)",
+                "conic-gradient(from 160deg, rgba(130,148,161,0.04), rgba(255,135,0,0.22), rgba(255,163,54,0.42), rgba(125,211,252,0.08), rgba(130,148,161,0.04))",
+              filter: "blur(12px)",
+              transform: "scaleY(0.3) scaleX(1.09)",
+              opacity: 0.94,
             }}
           />
           <div
             className="absolute inset-[8%] rounded-full"
             style={{
               background:
-                "conic-gradient(from 220deg, rgba(255,255,255,0.04), rgba(253,224,71,0.2), rgba(251,146,60,0.48), rgba(125,211,252,0.08), rgba(255,255,255,0.04))",
-              filter: "blur(18px)",
-              transform: "scaleY(0.2) scaleX(1.14)",
+                "conic-gradient(from 230deg, rgba(255,255,255,0.03), rgba(255,196,113,0.18), rgba(255,135,0,0.44), rgba(125,211,252,0.06), rgba(255,255,255,0.03))",
+              filter: "blur(20px)",
+              transform: "scaleY(0.22) scaleX(1.16)",
             }}
           />
         </div>
 
         <div
-          className="absolute left-1/2 top-[25.5%] h-[30rem] w-[30rem] -translate-x-1/2 rounded-full"
+          className="absolute left-1/2 top-[25.7%] h-[31rem] w-[31rem] -translate-x-1/2 rounded-full"
           style={{ transform: `translateX(-50%) rotate(${ringRotation})` }}
         >
           <div
             className="absolute inset-0 rounded-full border border-cyan-100/6"
-            style={{ transform: "scaleY(0.38) rotate(16deg)", filter: "blur(1px)" }}
+            style={{ transform: "scaleY(0.38) rotate(14deg)", filter: "blur(1px)" }}
           />
           <div
-            className="absolute inset-[12%] rounded-full border border-white/6"
-            style={{ transform: "scaleY(0.34) rotate(-10deg)", filter: "blur(1px)" }}
+            className="absolute inset-[10%] rounded-full border border-[#FF8700]/10"
+            style={{ transform: "scaleY(0.26) rotate(-10deg)", filter: "blur(1px)" }}
           />
         </div>
 
         <div
           className="absolute left-1/2 top-[26.5%] h-[24rem] w-[24rem] -translate-x-1/2 rounded-full"
           style={{
-            background: `radial-gradient(circle at center, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.98) 38%, rgba(125,211,252,${haloOpacity * 0.22}) 58%, rgba(125,211,252,${haloOpacity * 0.1}) 66%, transparent 74%)`,
-            boxShadow: `0 0 120px rgba(125,211,252,${haloOpacity * 0.45})`,
+            background: `radial-gradient(circle at center, rgba(0,0,0,0.99) 0%, rgba(0,0,0,0.99) 38%, rgba(125,211,252,${haloOpacity * 0.18}) 57%, rgba(255,135,0,${haloOpacity * 0.1}) 63%, transparent 74%)`,
+            boxShadow: `0 0 120px rgba(125,211,252,${haloOpacity * 0.28})`,
           }}
         >
           <div
-            className="absolute inset-[-12%] rounded-full"
+            className="absolute inset-[-14%] rounded-full"
             style={{
               background: `radial-gradient(circle at center, transparent 34%, rgba(255,255,255,${0.02 + flareStrength * 0.12}) 50%, transparent 66%)`,
-              filter: "blur(14px)",
+              filter: "blur(16px)",
             }}
           />
         </div>
 
         <div
-          className="absolute left-1/2 top-[28.5%] h-[18rem] w-[34rem] -translate-x-1/2"
-          style={{ opacity: 0.16 + flareStrength * 0.5 }}
+          className="absolute left-1/2 top-[28.8%] h-[18rem] w-[36rem] -translate-x-1/2"
+          style={{ opacity: 0.14 + flareStrength * 0.52 }}
         >
           <div
             className="absolute left-1/2 top-1/2 h-[3px] w-[120%] -translate-x-1/2 -translate-y-1/2"
             style={{
               background:
-                "linear-gradient(90deg, transparent, rgba(125,211,252,0.05), rgba(255,255,255,0.42), rgba(125,211,252,0.08), transparent)",
+                "linear-gradient(90deg, transparent, rgba(130,148,161,0.04), rgba(255,255,255,0.42), rgba(255,135,0,0.12), transparent)",
               filter: "blur(3px)",
             }}
           />
         </div>
 
         <div
-          className="absolute left-1/2 top-[18%] h-[26rem] w-[6rem] -translate-x-1/2"
-          style={{ opacity: flareStrength * 0.85 + secondaryFlare * 0.45 }}
+          className="absolute left-1/2 top-[17%] h-[28rem] w-[6rem] -translate-x-1/2"
+          style={{ opacity: flareStrength * 0.9 + secondaryFlare * 0.45 }}
         >
           <div
             className="absolute left-1/2 top-0 h-full w-full -translate-x-1/2"
             style={{
               background:
-                "linear-gradient(180deg, transparent, rgba(125,211,252,0.18), rgba(255,255,255,0.8), rgba(125,211,252,0.18), transparent)",
-              clipPath: "polygon(50% 0%, 70% 14%, 56% 100%, 44% 100%, 30% 14%)",
-              filter: "blur(8px)",
+                "linear-gradient(180deg, transparent, rgba(125,211,252,0.14), rgba(255,255,255,0.78), rgba(255,135,0,0.24), transparent)",
+              clipPath: "polygon(50% 0%, 68% 14%, 56% 100%, 44% 100%, 32% 14%)",
+              filter: "blur(9px)",
             }}
           />
         </div>
-
-        <div
-          className="absolute left-1/2 top-[34%] h-[18rem] w-[18rem] -translate-x-1/2 rounded-full"
-          style={{
-            opacity: 0.22 + flareStrength * 0.32,
-            background:
-              "radial-gradient(circle at center, rgba(255,255,255,0.08) 0%, rgba(125,211,252,0.12) 20%, rgba(125,211,252,0.04) 38%, transparent 64%)",
-            filter: "blur(22px)",
-          }}
-        />
       </div>
     </div>
   );
@@ -267,13 +256,13 @@ function BlackHoleBackground() {
 
 function SaucerEasterEgg() {
   return (
-    <div className="pointer-events-none absolute right-[7%] top-[22%] hidden opacity-60 lg:block">
-      <div className="relative h-16 w-28 animate-[float_ufo_7s_ease-in-out_infinite]">
-        <div className="absolute left-5 top-0 h-6 w-18 rounded-full border border-cyan-200/40 bg-[radial-gradient(circle_at_50%_35%,rgba(186,230,253,0.45),rgba(34,211,238,0.12)_55%,transparent_78%)]" />
-        <div className="absolute left-0 top-4 h-7 w-28 rounded-[999px] border border-cyan-100/20 bg-[linear-gradient(180deg,rgba(226,232,240,0.34),rgba(15,23,42,0.8))] shadow-[0_0_24px_rgba(125,211,252,0.18)]" />
-        <div className="absolute left-5 top-8 flex w-[4.5rem] justify-between px-1">
+    <div className="pointer-events-none absolute right-[6%] top-[18%] hidden opacity-50 lg:block">
+      <div className="relative h-14 w-24 animate-[float_ufo_8s_ease-in-out_infinite]">
+        <div className="absolute left-4 top-0 h-5 w-16 rounded-full border border-cyan-200/30 bg-[radial-gradient(circle_at_50%_35%,rgba(186,230,253,0.36),rgba(34,211,238,0.08)_55%,transparent_78%)]" />
+        <div className="absolute left-0 top-3 h-6 w-24 rounded-[999px] border border-white/10 bg-[linear-gradient(180deg,rgba(226,232,240,0.22),rgba(15,23,42,0.78))] shadow-[0_0_18px_rgba(125,211,252,0.14)]" />
+        <div className="absolute left-4 top-6 flex w-[4rem] justify-between px-1">
           {[0, 1, 2, 3].map((light) => (
-            <span key={light} className="h-1.5 w-1.5 rounded-full bg-amber-300/80 shadow-[0_0_12px_rgba(252,211,77,0.75)]" />
+            <span key={light} className="h-1.5 w-1.5 rounded-full bg-[#FF8700]/80 shadow-[0_0_10px_rgba(255,135,0,0.65)]" />
           ))}
         </div>
       </div>
@@ -281,84 +270,38 @@ function SaucerEasterEgg() {
   );
 }
 
-function FocusSection({
-  section,
-  index,
+function SectionFrame({
+  eyebrow,
+  title,
+  lead,
+  detail,
+  visual,
 }: {
-  section: (typeof sections)[number];
-  index: number;
+  eyebrow: string;
+  title: string;
+  lead: string;
+  detail: string;
+  visual: React.ReactNode;
 }) {
   return (
-    <section id={section.id} className="relative min-h-[115svh] snap-start px-6 py-10 lg:px-10">
+    <section className="relative min-h-[112svh] px-6 py-10 lg:px-10">
       <div className="sticky top-0 flex min-h-[100svh] items-center py-14">
-        <div className="grid w-full gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div className="grid w-full gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div className="max-w-3xl">
-            <p className="mb-5 text-xs font-medium uppercase tracking-[0.35em] text-cyan-200/70">{section.eyebrow}</p>
-            <h2 className="max-w-4xl text-4xl font-semibold tracking-[-0.05em] text-white md:text-6xl lg:text-[4.8rem] lg:leading-[0.96]">
-              {section.title}
+            <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.34em] text-cyan-200/72">
+              {eyebrow}
+            </p>
+            <h2 className="max-w-4xl text-4xl font-semibold tracking-[-0.05em] text-white md:text-6xl lg:text-[4.4rem] lg:leading-[0.98]">
+              {title}
             </h2>
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-white/68 md:text-xl md:leading-9">{section.lead}</p>
-            <p className="mt-6 max-w-xl text-sm leading-7 text-white/46 md:text-base">{section.detail}</p>
+            <p className="mt-8 max-w-2xl text-lg leading-8 text-white/68 md:text-xl md:leading-9">
+              {lead}
+            </p>
+            <p className="mt-6 max-w-xl text-sm leading-7 text-white/46 md:text-base">
+              {detail}
+            </p>
           </div>
-
-          <div className="relative flex min-h-[28rem] items-center justify-center">
-            <div className="absolute inset-0 rounded-[2rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] backdrop-blur-sm" />
-            <div className="absolute inset-[10%] rounded-[1.75rem] border border-cyan-300/10 bg-[radial-gradient(circle_at_50%_45%,rgba(125,211,252,0.16),transparent_26%),radial-gradient(circle_at_50%_72%,rgba(168,85,247,0.12),transparent_30%),linear-gradient(180deg,rgba(2,6,23,0.84),rgba(2,6,23,0.94))]" />
-
-            {index === 1 ? (
-              <div className="relative z-10 h-[22rem] w-[22rem]">
-                <div className="absolute inset-0 rounded-full border border-cyan-200/10" />
-                <div className="absolute inset-[12%] rounded-full border border-fuchsia-300/12" />
-                <div className="absolute inset-[25%] rounded-full border border-white/10" />
-                <div className="absolute inset-[36%] rounded-full bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.98)_0%,rgba(15,23,42,0.98)_42%,rgba(125,211,252,0.12)_60%,transparent_74%)] shadow-[0_0_120px_rgba(125,211,252,0.12)]" />
-                <div className="absolute left-[10%] top-[48%] h-px w-[78%] bg-gradient-to-r from-transparent via-cyan-100/30 to-transparent" />
-                <div className="absolute left-[48%] top-[10%] h-[78%] w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />
-              </div>
-            ) : null}
-
-            {index === 2 ? (
-              <div className="relative z-10 flex w-full max-w-[27rem] flex-col gap-4 px-8">
-                {[
-                  "Asymmetry",
-                  "Charge transport",
-                  "Boundary effects",
-                  "Interpretation drift",
-                ].map((item, itemIndex) => (
-                  <div
-                    key={item}
-                    className="rounded-2xl border border-white/8 bg-black/26 px-4 py-4 text-sm uppercase tracking-[0.2em] text-cyan-100/70"
-                    style={{ transform: `translateX(${itemIndex % 2 === 0 ? 0 : 18}px)` }}
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-            ) : null}
-
-            {index === 3 ? (
-              <div className="relative z-10 flex w-full max-w-[26rem] flex-wrap gap-3 px-8">
-                {watchlist.map((item, itemIndex) => (
-                  <div
-                    key={item}
-                    className="rounded-full border border-cyan-200/16 bg-white/[0.03] px-4 py-2 text-xs uppercase tracking-[0.18em] text-cyan-100/78"
-                    style={{ transform: `translateY(${(itemIndex % 2) * 8}px)` }}
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-            ) : null}
-
-            {index === 4 ? (
-              <div className="relative z-10 w-full max-w-[28rem] space-y-3 px-8">
-                {rigorChecks.map((item) => (
-                  <div key={item} className="rounded-2xl border border-white/8 bg-black/22 px-4 py-4 text-sm leading-7 text-white/70">
-                    {item}
-                  </div>
-                ))}
-              </div>
-            ) : null}
-          </div>
+          {visual}
         </div>
       </div>
     </section>
@@ -378,68 +321,181 @@ export default function HomePage() {
       <BlackHoleBackground />
       <SaucerEasterEgg />
 
-      <section className="relative z-10 min-h-[110svh] snap-start px-6 pb-20 pt-10 lg:px-10">
-        <div className="flex min-h-[96svh] items-center">
-          <div className="grid w-full gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-            <div className="max-w-4xl">
-              <p className="mb-5 text-xs font-medium uppercase tracking-[0.35em] text-cyan-200/70">{sections[0].eyebrow}</p>
-              <h1 className="text-6xl font-semibold tracking-[-0.075em] text-white md:text-8xl lg:text-[8rem] lg:leading-[0.88]">
-                {sections[0].title}
-              </h1>
-              <p className="mt-8 max-w-3xl text-xl leading-9 text-white/68 md:text-2xl md:leading-10">{sections[0].lead}</p>
-              <p className="mt-6 max-w-2xl text-sm leading-7 text-white/48 md:text-base">{sections[0].detail}</p>
+      <section className="relative z-10 min-h-[110svh] px-6 pb-20 pt-10 lg:px-10">
+        <div className="grid min-h-[96svh] gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+          <div className="max-w-5xl">
+            <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.36em] text-cyan-200/76">
+              {sections[0].eyebrow}
+            </p>
+            <h1 className="max-w-5xl text-5xl font-semibold tracking-[-0.07em] text-white md:text-7xl lg:text-[6.5rem] lg:leading-[0.9]">
+              {sections[0].title}
+            </h1>
+            <p className="mt-8 max-w-3xl text-xl leading-9 text-white/68 md:text-2xl md:leading-10">
+              {sections[0].lead}
+            </p>
+            <p className="mt-6 max-w-2xl text-sm leading-7 text-white/48 md:text-base">
+              {sections[0].detail}
+            </p>
 
-              <div className="mt-10 flex flex-wrap gap-3">
-                <div className="rounded-full border border-cyan-200/18 bg-cyan-300/[0.08] px-4 py-2 text-xs uppercase tracking-[0.2em] text-cyan-100/85">
-                  Spacetime visualization
+            <div className="mt-10 flex flex-wrap gap-3">
+              {[
+                "Spacetime visualization",
+                "Electrogravitics research",
+                "Field interpretation",
+                "Materials watchlist",
+              ].map((item, index) => (
+                <div
+                  key={item}
+                  className={[
+                    "rounded-full border px-4 py-2 text-xs uppercase tracking-[0.2em]",
+                    index === 1
+                      ? "border-[#FF8700]/20 bg-[#FF8700]/10 text-[#ffd2a6]"
+                      : "border-cyan-200/18 bg-cyan-300/[0.08] text-cyan-100/85",
+                  ].join(" ")}
+                >
+                  {item}
                 </div>
-                <div className="rounded-full border border-fuchsia-200/14 bg-fuchsia-300/[0.08] px-4 py-2 text-xs uppercase tracking-[0.2em] text-fuchsia-100/80">
-                  Electrogravitics research
-                </div>
-                <div className="rounded-full border border-white/12 bg-white/[0.04] px-4 py-2 text-xs uppercase tracking-[0.2em] text-white/78">
-                  Anomaly discipline
-                </div>
-              </div>
-            </div>
-
-            <div className="relative flex min-h-[28rem] items-center justify-center">
-              <div className="absolute inset-0 rounded-[2rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.015))] backdrop-blur-md" />
-              <div className="absolute inset-[9%] rounded-[1.8rem] border border-cyan-200/12 bg-[radial-gradient(circle_at_50%_44%,rgba(125,211,252,0.18),transparent_25%),radial-gradient(circle_at_50%_72%,rgba(168,85,247,0.14),transparent_28%),linear-gradient(180deg,rgba(4,10,22,0.9),rgba(3,7,18,0.98))]" />
-              <div className="relative z-10 h-[22rem] w-[22rem]">
-                <div className="absolute inset-0 rounded-full border border-cyan-200/12" />
-                <div className="absolute inset-[9%] rounded-full border border-fuchsia-300/12" />
-                <div className="absolute inset-[20%] rounded-full border border-white/10" />
-                <div className="absolute inset-[33%] rounded-full bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.98)_0%,rgba(15,23,42,0.98)_40%,rgba(125,211,252,0.14)_62%,transparent_76%)] shadow-[0_0_120px_rgba(125,211,252,0.14)]" />
-                <div className="absolute left-[8%] top-[49%] h-px w-[84%] bg-gradient-to-r from-transparent via-cyan-100/30 to-transparent" />
-              </div>
+              ))}
             </div>
           </div>
+
+          <aside className="relative flex min-h-[32rem] items-stretch justify-center">
+            <div className="absolute inset-0 rounded-[2rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] backdrop-blur-md" />
+            <div className="absolute inset-[8%] rounded-[1.6rem] border border-[#8294A1]/14 bg-[linear-gradient(180deg,rgba(7,12,18,0.84),rgba(4,8,14,0.96))]" />
+            <div className="relative z-10 flex w-full max-w-[30rem] flex-col justify-between p-8">
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.28em] text-white/40">Research rail</p>
+                <div className="mt-6 space-y-4">
+                  {railStats.map((item) => (
+                    <div key={item.label} className="rounded-[1.2rem] border border-white/8 bg-black/22 p-4">
+                      <p className="text-[11px] uppercase tracking-[0.24em] text-white/38">{item.label}</p>
+                      <p className="mt-2 text-sm leading-6 text-white/72">{item.value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="rounded-[1.3rem] border border-cyan-200/12 bg-[linear-gradient(180deg,rgba(130,148,161,0.08),rgba(255,135,0,0.05))] p-5">
+                <p className="text-[11px] uppercase tracking-[0.26em] text-cyan-200/62">Current posture</p>
+                <p className="mt-3 text-sm leading-7 text-white/62">
+                  Better tools for sorting asymmetry, atmosphere, charge transport, and genuinely difficult residuals.
+                </p>
+              </div>
+            </div>
+          </aside>
         </div>
 
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-center text-[11px] uppercase tracking-[0.35em] text-white/34">
-          Scroll to descend through the stack
+          Scroll to descend through the field
         </div>
       </section>
 
       <div className="relative z-10">
-        {sections.slice(1).map((section, index) => (
-          <FocusSection key={section.id} section={section} index={index + 1} />
-        ))}
+        <SectionFrame
+          eyebrow={sections[1].eyebrow}
+          title={sections[1].title}
+          lead={sections[1].lead}
+          detail={sections[1].detail}
+          visual={
+            <div className="relative flex min-h-[30rem] items-center justify-center">
+              <div className="absolute inset-0 rounded-[2rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] backdrop-blur-sm" />
+              <div className="absolute inset-[10%] rounded-[1.5rem] border border-cyan-300/10 bg-[radial-gradient(circle_at_50%_45%,rgba(125,211,252,0.16),transparent_26%),linear-gradient(180deg,rgba(2,6,23,0.84),rgba(2,6,23,0.94))]" />
+              <div className="relative z-10 h-[22rem] w-[22rem]">
+                <div className="absolute inset-0 rounded-full border border-cyan-200/10" />
+                <div className="absolute inset-[13%] rounded-full border border-[#8294A1]/14" />
+                <div className="absolute inset-[28%] rounded-full border border-white/10" />
+                <div className="absolute inset-[36%] rounded-full bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.99)_0%,rgba(15,23,42,0.98)_42%,rgba(125,211,252,0.12)_60%,transparent_74%)] shadow-[0_0_120px_rgba(125,211,252,0.12)]" />
+                <div className="absolute left-[7%] top-[48%] h-px w-[86%] bg-gradient-to-r from-transparent via-cyan-100/30 to-transparent" />
+                <div className="absolute left-[49%] top-[7%] h-[86%] w-px bg-gradient-to-b from-transparent via-white/12 to-transparent" />
+              </div>
+            </div>
+          }
+        />
+
+        <SectionFrame
+          eyebrow={sections[2].eyebrow}
+          title={sections[2].title}
+          lead={sections[2].lead}
+          detail={sections[2].detail}
+          visual={
+            <div className="relative flex min-h-[30rem] items-center justify-center">
+              <div className="absolute inset-0 rounded-[2rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] backdrop-blur-sm" />
+              <div className="relative z-10 grid w-full max-w-[28rem] gap-4 px-7">
+                {[
+                  "Atmospheric force pathways",
+                  "Thermal drift and sensor bias",
+                  "Asymmetry that reads like thrust",
+                  "Geometry finally becoming obvious",
+                ].map((item, index) => (
+                  <div
+                    key={item}
+                    className="rounded-[1.2rem] border border-white/8 bg-black/24 px-4 py-4 text-sm leading-7 text-white/66"
+                    style={{ transform: `translateX(${index % 2 === 0 ? 0 : 18}px)` }}
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          }
+        />
+
+        <SectionFrame
+          eyebrow={sections[3].eyebrow}
+          title={sections[3].title}
+          lead={sections[3].lead}
+          detail={sections[3].detail}
+          visual={
+            <div className="relative flex min-h-[30rem] items-center justify-center">
+              <div className="absolute inset-0 rounded-[2rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] backdrop-blur-sm" />
+              <div className="relative z-10 grid w-full max-w-[30rem] gap-4 px-7">
+                {materials.map((item, index) => (
+                  <div
+                    key={item.name}
+                    className="rounded-[1.3rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.018))] px-5 py-5"
+                    style={{ transform: `translateY(${index % 2 === 0 ? 0 : 8}px)` }}
+                  >
+                    <p className="text-[11px] uppercase tracking-[0.25em] text-[#FFB366]">{item.name}</p>
+                    <p className="mt-3 text-sm leading-7 text-white/58">{item.note}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          }
+        />
+
+        <SectionFrame
+          eyebrow={sections[4].eyebrow}
+          title={sections[4].title}
+          lead={sections[4].lead}
+          detail={sections[4].detail}
+          visual={
+            <div className="relative flex min-h-[30rem] items-center justify-center">
+              <div className="absolute inset-0 rounded-[2rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] backdrop-blur-sm" />
+              <div className="relative z-10 grid w-full max-w-[30rem] gap-3 px-7">
+                {disciplineChecks.map((item) => (
+                  <div key={item} className="rounded-[1.2rem] border border-white/8 bg-black/24 px-4 py-4 text-sm leading-7 text-white/68">
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          }
+        />
       </div>
 
       <section className="relative z-10 border-t border-white/8 px-6 py-20 lg:px-10">
         <div className="mx-auto max-w-6xl rounded-[2rem] border border-cyan-200/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] px-6 py-10 shadow-[0_24px_80px_rgba(0,0,0,0.28)] md:px-10 md:py-14">
           <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.35em] text-cyan-200/70">HISTORICAL THREAD</p>
+              <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-cyan-200/70">HISTORICAL THREAD</p>
               <h2 className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-white md:text-6xl">
-                Thomas Townsend Brown and the long shadow of electrogravitics.
+                Thomas Townsend Brown and the problem that refused to stay buried.
               </h2>
               <p className="mt-6 max-w-2xl text-base leading-8 text-white/58 md:text-lg">
-                Brown spent decades exploring whether strong electric fields, asymmetric geometries, and dielectric structures were pointing toward a deeper interaction between electricity and gravitation. Much of what he saw is now usually explained through electrohydrodynamics and ion-driven effects — but the questions he raised never entirely left the room.
+                Brown’s early high-voltage asymmetry experiments helped define the visual and conceptual territory that still shadows electrogravitics. He believed electric fields might be touching gravitation directly. Later work often explained the same observations through electrohydrodynamics, ion transport, and ordinary force pathways that were never quite as ordinary-looking as they should have been.
               </p>
               <p className="mt-5 max-w-2xl text-sm leading-7 text-white/46 md:text-base">
-                Gravolytics sits in that aftermath. Not to canonize Brown, and not to recycle mythology, but to give the field a better visual and analytical surface for separating historical intuition, real atmospheric force phenomena, and whatever survives serious modern scrutiny.
+                Gravolytics matters because this argument is still unresolved at the level that counts most in practice: not the mythology, but the legibility of the field. The better the structure can be seen, the less room there is for confusion to masquerade as discovery.
               </p>
             </div>
 
@@ -448,12 +504,12 @@ export default function HomePage() {
                 <div className="aspect-[4/3] w-full bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.08),transparent_28%),linear-gradient(180deg,rgba(20,26,36,0.9),rgba(8,10,14,0.98))] p-6">
                   <div className="flex h-full flex-col justify-between rounded-[1.1rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.015))] p-5">
                     <div>
-                      <p className="text-[11px] uppercase tracking-[0.28em] text-cyan-200/60">Archival placeholder</p>
+                      <p className="text-[11px] uppercase tracking-[0.28em] text-cyan-200/60">Archival slot</p>
                       <p className="mt-3 max-w-[16rem] text-sm leading-6 text-white/56">
-                        Reserve this frame for a Brown experiment photograph or period lab image once we choose the exact archival source and rights-safe asset.
+                        Reserved for a rights-safe Brown photo, patent figure, or period apparatus image once we settle the exact source.
                       </p>
                     </div>
-                    <div className="text-xs uppercase tracking-[0.24em] text-white/34">High voltage, asymmetry, interpretation</div>
+                    <div className="text-xs uppercase tracking-[0.24em] text-white/34">High voltage // asymmetry // interpretation</div>
                   </div>
                 </div>
               </div>
