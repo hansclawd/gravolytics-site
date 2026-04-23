@@ -83,22 +83,37 @@ const disciplineChecks = [
   "Instrument suspicion: what is the sensor chain lying about today?",
 ] as const;
 
-const brownHistory = [
+const brownTimeline = [
   {
-    title: "The original wager",
+    year: "1921",
+    label: "Coolidge tube experiments",
     body:
-      "Brown’s early high-voltage asymmetrical experiments led him to suspect that electric fields might be doing more than ordinary electrostatics should allow.",
+      "Brown’s early asymmetrical high-voltage tube work convinced him that electric fields might be doing something stranger than conventional electrostatics should allow.",
   },
   {
-    title: "The split in interpretation",
+    year: "1928–1929",
+    label: "Gravitor language appears",
     body:
-      "What he regarded as gravity interaction is now often interpreted through electrohydrodynamics, ion wind, and other conventional force pathways. The force was real enough to see. The ontology remains the fight.",
+      "He developed dielectric devices he called gravitators and began describing a force that he believed interacted with gravity rather than merely pushing charge around.",
   },
   {
-    title: "Why Gravolytics exists",
+    year: "1950s",
+    label: "Electrogravitics enters the aerospace imagination",
     body:
-      "The modern problem is not just whether a claim is true. It is whether field behavior can be visualized and interrogated clearly enough that mechanism separates itself from mythology.",
+      "Brown pushed the idea toward propulsion and anti-gravity rhetoric, while demonstrations and patents kept the subject alive even as interpretation remained unstable.",
   },
+  {
+    year: "Now",
+    label: "The unresolved split",
+    body:
+      "Modern work often explains the observed forces through ion wind and electrohydrodynamics, yet the broader historical question remains: how do you visualize field behavior well enough to stop mechanism and mythology from blending together?",
+  },
+] as const;
+
+const historyNotes = [
+  "Observed force does not automatically imply exotic mechanism.",
+  "Brown matters historically even where his interpretation remains disputed.",
+  "Gravolytics exists to make that dispute more legible.",
 ] as const;
 
 function useScrollProgress() {
@@ -487,39 +502,63 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl rounded-[2rem] border border-cyan-200/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] px-6 py-10 shadow-[0_24px_80px_rgba(0,0,0,0.28)] md:px-10 md:py-14">
           <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
             <div>
-              <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-cyan-200/70">HISTORICAL THREAD</p>
+              <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-cyan-200/70">ARCHIVAL THREAD</p>
               <h2 className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-white md:text-6xl">
-                Thomas Townsend Brown and the problem that refused to stay buried.
+                Thomas Townsend Brown and the experiment that never really ended.
               </h2>
               <p className="mt-6 max-w-2xl text-base leading-8 text-white/58 md:text-lg">
-                Brown’s early high-voltage asymmetry experiments helped define the visual and conceptual territory that still shadows electrogravitics. He believed electric fields might be touching gravitation directly. Later work often explained the same observations through electrohydrodynamics, ion transport, and ordinary force pathways that were never quite as ordinary-looking as they should have been.
+                Brown occupies the awkward borderland where electrogravitics still lives: real observed force, unstable interpretation, decades of rhetoric, and just enough unresolved structure to keep the question alive. His work matters less as proof than as an unresolved case file.
               </p>
               <p className="mt-5 max-w-2xl text-sm leading-7 text-white/46 md:text-base">
-                Gravolytics matters because this argument is still unresolved at the level that counts most in practice: not the mythology, but the legibility of the field. The better the structure can be seen, the less room there is for confusion to masquerade as discovery.
+                Gravolytics inherits that problem directly. Not to sanctify Brown, and not to recycle mythology, but to build a better visual and analytical surface for field behavior, force pathways, and the point where interpretation either sharpens or starts lying.
               </p>
             </div>
 
-            <div className="grid gap-4">
+            <div className="space-y-4">
               <div className="overflow-hidden rounded-[1.4rem] border border-white/8 bg-black/24">
                 <div className="aspect-[4/3] w-full bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.08),transparent_28%),linear-gradient(180deg,rgba(20,26,36,0.9),rgba(8,10,14,0.98))] p-6">
-                  <div className="flex h-full flex-col justify-between rounded-[1.1rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.015))] p-5">
-                    <div>
-                      <p className="text-[11px] uppercase tracking-[0.28em] text-cyan-200/60">Archival slot</p>
-                      <p className="mt-3 max-w-[16rem] text-sm leading-6 text-white/56">
-                        Reserved for a rights-safe Brown photo, patent figure, or period apparatus image once we settle the exact source.
-                      </p>
+                  <div className="grid h-full gap-4 rounded-[1.1rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.015))] p-5">
+                    <div className="flex items-center justify-between">
+                      <p className="text-[11px] uppercase tracking-[0.28em] text-cyan-200/60">Archival dossier</p>
+                      <p className="text-[11px] uppercase tracking-[0.22em] text-white/34">Pending image source</p>
                     </div>
-                    <div className="text-xs uppercase tracking-[0.24em] text-white/34">High voltage // asymmetry // interpretation</div>
+                    <div className="grid flex-1 grid-cols-[92px_1fr] gap-4">
+                      <div className="rounded-[1rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01))] p-3 text-center text-[11px] uppercase tracking-[0.22em] text-white/38">
+                        Brown
+                        <div className="mt-3 h-[7.5rem] rounded-[0.8rem] border border-dashed border-white/10 bg-black/22" />
+                      </div>
+                      <div className="rounded-[1rem] border border-white/8 bg-black/18 p-4">
+                        <p className="text-[11px] uppercase tracking-[0.24em] text-[#FFB366]">Case note</p>
+                        <p className="mt-3 text-sm leading-7 text-white/58">
+                          Reserve this slot for a rights-safe Brown portrait, experiment photograph, patent figure, or period apparatus image once we choose the exact source and citation treatment.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="grid gap-2 text-[11px] uppercase tracking-[0.22em] text-white/34 md:grid-cols-3">
+                      {historyNotes.map((note) => (
+                        <div key={note} className="rounded-full border border-white/8 px-3 py-2 text-center">
+                          {note}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {brownHistory.map((item) => (
-                <div key={item.title} className="rounded-[1.4rem] border border-white/8 bg-black/24 p-5">
-                  <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-white/56">{item.body}</p>
+              <div className="rounded-[1.4rem] border border-white/8 bg-black/24 p-5">
+                <p className="text-[11px] uppercase tracking-[0.26em] text-cyan-200/62">Timeline</p>
+                <div className="mt-5 space-y-4">
+                  {brownTimeline.map((item) => (
+                    <div key={item.year + item.label} className="grid gap-3 rounded-[1.1rem] border border-white/8 bg-black/18 p-4 md:grid-cols-[84px_1fr]">
+                      <div className="text-[11px] uppercase tracking-[0.24em] text-[#FFB366]">{item.year}</div>
+                      <div>
+                        <h3 className="text-base font-semibold text-white">{item.label}</h3>
+                        <p className="mt-2 text-sm leading-7 text-white/56">{item.body}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </div>
