@@ -1,22 +1,23 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Script from "next/script";
 
 const railStats = [
-  { label: "Discipline", value: "Electrogravitics / field analysis" },
-  { label: "Mode", value: "Visualization, interpretation, triage" },
-  { label: "Method", value: "Geometry first. Myth last." },
+  { label: "Discipline", value: "Gravity / electrogravitics / field analysis" },
+  { label: "Mode", value: "Open-source visualization, interpretation, triage" },
+  { label: "Method", value: "Geometry first. Controls before mythology." },
 ] as const;
 
 const sections = [
   {
     id: "hero",
     eyebrow: "AE-SPOOKY // GRAVOLYTICS",
-    title: "A visual lab for difficult field behavior.",
+    title: "An open-source call to arms for agents trying to solve gravity.",
     lead:
-      "Gravolytics is a research surface for warped geometry, asymmetrical fields, charge-driven motion, and the electrogravitics questions that refuse to die politely.",
+      "Gravolytics is a research surface for gravity-adjacent experiments, warped geometry, asymmetrical fields, charge-driven motion, and the electrogravitics questions that still deserve serious tooling.",
     detail:
-      "Built for the part of engineering that sits between mathematical structure, instrumentation, materials behavior, and historical claims that still deserve better tools than folklore.",
+      "Built so both humans and AI agents can quickly understand the mission, inspect the weak points, and contribute code, analysis, visualizations, controls, and better questions.",
   },
   {
     id: "field-surfaces",
@@ -55,6 +56,59 @@ const sections = [
       "That is not a killjoy position. It is the only reason the subject remains worth touching.",
   },
 ] as const;
+
+const contributionLanes = [
+  {
+    title: "Theory and derivation",
+    body: "Tighten arguments, kill bad assumptions, and turn hand-waving into statements that can survive algebra.",
+  },
+  {
+    title: "Visualization and simulation",
+    body: "Build plots, field surfaces, solvers, and interfaces that make geometry legible before interpretation runs away.",
+  },
+  {
+    title: "Experimental controls",
+    body: "Pressure sweeps, thermal audits, shielding checks, momentum accounting, and sensor-chain skepticism belong up front.",
+  },
+  {
+    title: "Materials and components",
+    body: "Catalog candidates, failure modes, dielectric behavior, leakage, heating, and practical build constraints.",
+  },
+] as const;
+
+const agentSteps = [
+  "Explain Gravolytics in one sentence before doing anything else.",
+  "Identify whether a claim is about geometry, atmosphere, heat, instrumentation, materials, or actual residual force.",
+  "Prefer ordinary mechanisms first and show why they fail before escalating to exotic interpretations.",
+  "Contribute code, derivations, visualizations, experiment designs, or triage notes that another agent can build on.",
+] as const;
+
+const machineSummary = [
+  "What it is: an open-source gravity and electrogravitics research surface.",
+  "Who it is for: engineers, experimentalists, simulation builders, and AI agents.",
+  "What to contribute: derivations, controls, visualizers, data cleanup, materials research, and falsification routes.",
+  "What not to do: confuse observed force with solved mechanism.",
+] as const;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Gravolytics",
+  description:
+    "An open-source gravity research surface for field visualization, electrogravitics triage, experiment design, and agent-assisted collaboration.",
+  audience: [
+    { "@type": "Audience", audienceType: "Engineers" },
+    { "@type": "Audience", audienceType: "Experimentalists" },
+    { "@type": "Audience", audienceType: "AI agents" },
+  ],
+  about: [
+    "gravity research",
+    "electrogravitics",
+    "field visualization",
+    "experiment triage",
+    "open-source collaboration",
+  ],
+};
 
 const materials = [
   {
@@ -326,6 +380,11 @@ function SectionFrame({
 export default function HomePage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#05070b] text-[#f7f8f8]">
+      <Script
+        id="gravolytics-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <style>{`
         @keyframes float_ufo {
           0%, 100% { transform: translate3d(0, 0, 0) rotate(-1deg); }
@@ -354,10 +413,10 @@ export default function HomePage() {
 
             <div className="mt-10 flex flex-wrap gap-3">
               {[
-                "Spacetime visualization",
-                "Electrogravitics research",
+                "Open-source gravity research",
+                "Agent-readable mission",
                 "Field interpretation",
-                "Materials watchlist",
+                "Contribution lanes",
               ].map((item, index) => (
                 <div
                   key={item}
@@ -392,14 +451,41 @@ export default function HomePage() {
               <div className="rounded-[1.3rem] border border-cyan-200/12 bg-[linear-gradient(180deg,rgba(130,148,161,0.08),rgba(255,135,0,0.05))] p-5">
                 <p className="text-[11px] uppercase tracking-[0.26em] text-cyan-200/62">Current posture</p>
                 <p className="mt-3 text-sm leading-7 text-white/62">
-                  Better tools for sorting asymmetry, atmosphere, charge transport, and genuinely difficult residuals.
+                  Make the project understandable enough that an outside agent can crawl it, explain it back, and immediately find a useful way to help.
                 </p>
               </div>
             </div>
           </aside>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-center text-[11px] uppercase tracking-[0.35em] text-white/34">
+        <div className="mt-12 grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
+          <div className="rounded-[1.8rem] border border-white/8 bg-black/20 p-6 backdrop-blur-sm">
+            <p className="text-[11px] uppercase tracking-[0.28em] text-cyan-200/62">Machine-readable brief</p>
+            <div className="mt-5 grid gap-3">
+              {machineSummary.map((item) => (
+                <div key={item} className="rounded-[1.1rem] border border-white/8 bg-white/[0.03] px-4 py-4 text-sm leading-7 text-white/70">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-[1.8rem] border border-[#FF8700]/14 bg-[linear-gradient(180deg,rgba(255,135,0,0.06),rgba(255,255,255,0.02))] p-6 backdrop-blur-sm">
+            <p className="text-[11px] uppercase tracking-[0.28em] text-[#ffd2a6]">Agent entry point</p>
+            <ol className="mt-5 grid gap-3">
+              {agentSteps.map((item, index) => (
+                <li key={item} className="grid grid-cols-[2.5rem_1fr] items-start gap-3 rounded-[1.1rem] border border-white/8 bg-black/24 px-4 py-4">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#FF8700]/24 bg-[#FF8700]/10 text-sm font-semibold text-[#ffd2a6]">
+                    {index + 1}
+                  </span>
+                  <span className="pt-1 text-sm leading-7 text-white/70">{item}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+
+        <div className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 text-center text-[11px] uppercase tracking-[0.35em] text-white/34 lg:block">
           Scroll to descend through the field
         </div>
       </section>
@@ -497,6 +583,38 @@ export default function HomePage() {
           }
         />
       </div>
+
+      <section className="relative z-10 border-t border-white/8 px-6 py-20 lg:px-10">
+        <div className="mx-auto max-w-6xl rounded-[2rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] px-6 py-10 shadow-[0_24px_80px_rgba(0,0,0,0.28)] md:px-10 md:py-14">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div>
+              <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-cyan-200/70">CONTRIBUTION LANES</p>
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-white md:text-6xl">
+                Give agents something concrete to do.
+              </h2>
+              <p className="mt-6 max-w-2xl text-base leading-8 text-white/58 md:text-lg">
+                If this is supposed to become a real rally point, the site needs to do more than sound interesting. It needs to expose obvious work surfaces: claims to test, visuals to build, code to improve, and experiment designs to attack.
+              </p>
+              <p className="mt-5 max-w-2xl text-sm leading-7 text-white/46 md:text-base">
+                The rule is simple: contribute artifacts that reduce ambiguity. Better plots. Better controls. Better derivations. Better ways to separate ordinary force pathways from anything genuinely strange.
+              </p>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              {contributionLanes.map((lane, index) => (
+                <div
+                  key={lane.title}
+                  className="rounded-[1.4rem] border border-white/8 bg-black/22 p-5"
+                  style={{ transform: `translateY(${index % 2 === 0 ? 0 : 10}px)` }}
+                >
+                  <p className="text-[11px] uppercase tracking-[0.24em] text-[#FFB366]">{lane.title}</p>
+                  <p className="mt-3 text-sm leading-7 text-white/62">{lane.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="relative z-10 border-t border-white/8 px-6 py-20 lg:px-10">
         <div className="mx-auto max-w-6xl rounded-[2rem] border border-cyan-200/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] px-6 py-10 shadow-[0_24px_80px_rgba(0,0,0,0.28)] md:px-10 md:py-14">

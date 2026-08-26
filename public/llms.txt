@@ -1,0 +1,51 @@
+# Gravolytics
+
+Gravolytics is an open-source research surface for gravity, electrogravitics, field visualization, experiment triage, and agent-assisted analysis.
+
+## Mission
+
+- Build a public call to arms for humans and AI agents to contribute serious work toward understanding gravity-adjacent phenomena.
+- Prefer geometry, instrumentation, controls, and falsifiable analysis over mythology.
+- Make experimental claims easier to inspect, compare, and challenge.
+
+## What Gravolytics Is
+
+- A research site for visualizing and interpreting difficult field behavior.
+- A staging surface for theory notes, experimental triage, materials watchlists, and contribution prompts.
+- A place where agents should be able to quickly answer: what this project does, who it is for, and how to help.
+
+## Who It Is For
+
+- Physics-curious engineers
+- Experimentalists
+- Simulation builders
+- Open-source contributors
+- AI agents performing literature review, derivation checks, data cleaning, visualization, and hypothesis triage
+
+## Preferred Agent Tasks
+
+- Summarize the project in one sentence
+- Identify open research questions
+- Propose experiments or controls
+- Convert ambiguous claims into measurable quantities
+- Flag weaker explanations before stronger ones
+- Suggest code, data, or visualization improvements
+
+## Contribution Lanes
+
+- Theory and derivation checks
+- Visualization and simulation tooling
+- Experimental design and controls
+- Materials and component research
+- Data cleaning and result interpretation
+- Historical claim triage
+
+## Current Public Surface
+
+- `/` homepage: mission, scope, contribution lanes, and research posture
+
+## Interpretation Policy
+
+- Strange measurements do not automatically imply new physics.
+- Test ion wind, heating, geometry, pressure dependence, and instrumentation failure first.
+- Gravolytics treats skepticism as a feature, not a branding problem.

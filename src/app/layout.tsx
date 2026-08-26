@@ -13,9 +13,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Gravolytics // AE-Spooky",
+  title: "Gravolytics | Open-source gravity research surface",
   description:
-    "A futuristic one-page site for the AE-Spooky department and the Gravolytics spacetime visualization platform.",
+    "Gravolytics is an open-source research surface for gravity, electrogravitics, field visualization, experiment triage, and agent-readable collaboration on hard physics problems.",
+  keywords: [
+    "Gravolytics",
+    "gravity research",
+    "electrogravitics",
+    "field visualization",
+    "open-source physics",
+    "agent collaboration",
+    "experiment triage",
+    "spacetime analysis",
+  ],
+  openGraph: {
+    title: "Gravolytics | Open-source gravity research surface",
+    description:
+      "A site built so humans and agents can understand, inspect, and contribute to gravity-adjacent research without drowning in folklore.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
